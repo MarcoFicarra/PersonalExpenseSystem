@@ -1,6 +1,6 @@
 # Sistema di Gestione delle Spese Personali e del Budget 💰
 
-Questo progetto rappresenta l'elaborato finale per l'esame di **Programmazione (REA L8)**. Si tratta di un'applicazione basata su console sviluppata in **Python** che interagisce con un database relazionale **SQL (SQLite)** per monitorare le finanze personali.
+Questo progetto rappresenta l'elaborato finale per l'esame del Corso **Fondamenti di Informatica (AREA L8)**. Si tratta di un'applicazione basata su console sviluppata in **Python** che interagisce con un database relazionale **SQL (SQLite)** per monitorare le finanze personali.
 
 ## 📋 Requisiti per l'Esecuzione
 
