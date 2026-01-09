@@ -5,7 +5,6 @@ import os
 
 def connect_db():
     """Stabilisce la connessione al database e abilita i vincoli delle chiavi esterne."""
-    # Utilizziamo un percorso relativo per evitare errori di 'unicodeescape' su Windows
     conn = sqlite3.connect('gestione_spese.db')
     conn.execute("PRAGMA foreign_keys = ON;")
     return conn
@@ -85,7 +84,6 @@ def inserisci_spesa():
     conn = connect_db()
     cursor = conn.cursor()
     
-    # Verifica esistenza categoria
     cursor.execute("SELECT id_categoria FROM Categorie WHERE nome = ?", (cat_nome,))
     res = cursor.fetchone()
 
@@ -120,7 +118,6 @@ def definisci_budget():
     res = cursor.fetchone()
 
     if res:
-        # Utilizziamo INSERT OR REPLACE per consentire l'aggiornamento di un budget esistente
         cursor.execute("INSERT OR REPLACE INTO Budget (mese, importo_limite, id_categoria) VALUES (?, ?, ?)",
                        (mese, importo, res[0]))
         conn.commit()
@@ -185,26 +182,35 @@ def visualizza_report():
             print("Scelta non valida. Riprovare.")
         conn.close()
 
-# --- CICLO ITERATIVO PRINCIPALE ---
+# --- CICLO ITERATIVO PRINCIPALE (MODIFICATO SECONDO REQUISITI) ---
 
 def main():
+    # Inizializzazione del Database
     inizializza_database()
-    print("BENVENUTO NEL SISTEMA GESTIONE SPESE")
     
+    # 1. MESSAGGIO DI BENVENUTO (Punto 3.1)
+    print("========================================")
+    print("   BENVENUTO NEL SISTEMA DI GESTIONE    ")
+    print("       SPESE PERSONALI E BUDGET         ")
+    print("========================================")
+    
+    # CICLO ITERATIVO per ripetere il menu (Punto 4)
     while True:
-        print("\n" + "-"*25)
+        # 2. MOSTRA IL MENU PRINCIPALE (Punto 3.2 e 4 - cout equivalent)
+        print("\n-------------------------")
         print(" SISTEMA SPESE PERSONALI ")
-        print("-"*25)
+        print("-------------------------")
         print("1. Gestione Categorie")
         print("2. Inserisci Spesa")
         print("3. Definisci Budget Mensile")
         print("4. Visualizza Report")
         print("5. Esci")
-        print("-"*25)
+        print("-------------------------")
         
+        # 3. ATTENDERE LA SCELTA DELL'UTENTE (Punto 3.3 e 4 - cin equivalent)
         scelta = input("Inserisci la tua scelta: ")
 
-        # Simulazione switch-case tramite strutture if-elif
+        # 4. LOGICA DEL MENU / SELEZIONE (Punto 5 - switch equivalent)
         if scelta == '1':
             gestione_categorie()
         elif scelta == '2':
@@ -214,10 +220,12 @@ def main():
         elif scelta == '4':
             visualizza_report()
         elif scelta == '5':
-            print("Uscita dal sistema. Arrivederci!")
-            break
+            # Uscita programmata
+            print("\nUscita dal sistema. Arrivederci!")
+            break 
         else:
-            print("Scelta non valida. Riprovare.")
+            # Validazione scelta (Punto 5)
+            print("\nScelta non valida. Riprovare.")
 
 if __name__ == "__main__":
     main()
