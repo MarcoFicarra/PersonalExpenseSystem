@@ -11,7 +11,7 @@ Per eseguire il programma è necessario soddisfare i seguenti requisiti tecnici:
 
 ## 📂 Struttura del Repository
 
-Il progetto segue la struttura consigliata dal bando (punto 8.5):
+Il progetto segue la seguente struttura:
 
 ```text
 PersonalExpenseSystem/
